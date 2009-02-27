@@ -104,6 +104,7 @@ Interfejs perlowy do Xfce4 Xfconf.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -126,6 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libxfconf-0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxfconf-0.so.2
 %attr(755,root,root) %{_libdir}/xfconfd
+%dir %{_sysconfdir}/xdg/xfce4/xfconf
 %{_datadir}/dbus-1/services/org.xfce.Xfconf.service
 
 %files devel
