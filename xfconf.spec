@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRequires:	xfce4-dev-tools >= %{version}
+Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,6 +45,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	dbus-devel >= 1.0.0
 Requires:	dbus-glib-devel >= 0.72
 Requires:	glib2-devel >= 1:2.12.0
+Obsoletes:	libxfce4mcs-devel
+Obsoletes:	xfce-mcs-manager-devel
 
 %description devel
 Header files for Xfconf library.
@@ -56,6 +59,7 @@ Summary:	Static Xfconf library
 Summary(pl.UTF-8):	Statyczna biblioteka Xfconf
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Obsoletes:	libxfce4mcs-static
 
 %description static
 Static Xfconf library.
@@ -68,6 +72,7 @@ Summary:	Xfconf API documentation
 Summary(pl.UTF-8):	Dokumentacja API Xfconf
 Group:		Documentation
 Requires:	gtk-doc-common
+Obsoletes:	libxfce4mcs-apidocs
 
 %description apidocs
 Xfconf API documentation.
