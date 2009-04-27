@@ -4,12 +4,12 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.6.0
-Release:	2
+Version:	4.6.1
+Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	38595f78379eb1f456e97b393fdafd20
+# Source0-md5:	d4d3018767ea9eb4b57cc57d4038023b
 URL:		http://www.xfce.org/projects/xfconf/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
@@ -26,7 +26,7 @@ BuildRequires:	perl-Glib >= 1.020
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
-BuildRequires:	xfce4-dev-tools >= %{version}
+BuildRequires:	xfce4-dev-tools >= 4.6.0
 Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
