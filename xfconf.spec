@@ -4,12 +4,12 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.6.1
-Release:	2
+Version:	4.7.3
+Release:	0.1
 License:	GPL v2
 Group:		Libraries
-Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	d4d3018767ea9eb4b57cc57d4038023b
+Source0:	http://www.xfce.org/archive/xfce/4.8pre1/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	ee795d3f5a2eefdd03c06a4d6977f65a
 URL:		http://www.xfce.org/projects/xfconf/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
@@ -26,7 +26,7 @@ BuildRequires:	perl-Glib >= 1.020
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
-BuildRequires:	xfce4-dev-tools >= 4.6.0
+BuildRequires:	xfce4-dev-tools >= 4.7.0
 Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -131,7 +131,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xfconf-query
 %attr(755,root,root) %{_libdir}/libxfconf-0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxfconf-0.so.2
-%attr(755,root,root) %{_libdir}/xfconfd
+%dir %{_libdir}/xfce4/xfconf
+%attr(755,root,root) %{_libdir}/xfce4/xfconf/xfconfd
 %dir %{_sysconfdir}/xdg/xfce4/xfconf
 %dir %{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{_datadir}/dbus-1/services/org.xfce.Xfconf.service
