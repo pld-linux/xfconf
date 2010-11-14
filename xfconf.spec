@@ -4,12 +4,12 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.6.1
-Release:	2
+Version:	4.6.2
+Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	d4d3018767ea9eb4b57cc57d4038023b
+# Source0-md5:	5ff93c15077c6dbbcd38c437bc1ab2ef
 URL:		http://www.xfce.org/projects/xfconf/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
