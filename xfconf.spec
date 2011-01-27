@@ -4,19 +4,19 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.7.3
-Release:	0.1
+Version:	4.8.0
+Release:	1
 License:	GPL v2
 Group:		Libraries
-Source0:	http://www.xfce.org/archive/xfce/4.8pre1/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	ee795d3f5a2eefdd03c06a4d6977f65a
-URL:		http://www.xfce.org/projects/xfconf/
+Source0:	http://archive.xfce.org/xfce/4.8/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	0f11ed1ec7789c5c4c3fcc7cdb3c2940
+URL:		http://www.xfce.org/projects/xfconf
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
 BuildRequires:	dbus-devel >= 1.0.0
 BuildRequires:	dbus-glib-devel >= 0.72
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.0
+BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	libxfce4util-devel >= %{version}
@@ -26,7 +26,7 @@ BuildRequires:	perl-Glib >= 1.020
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
-BuildRequires:	xfce4-dev-tools >= 4.7.0
+BuildRequires:	xfce4-dev-tools >= 4.8.0
 Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,7 +44,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus-devel >= 1.0.0
 Requires:	dbus-glib-devel >= 0.72
-Requires:	glib2-devel >= 1:2.12.0
+Requires:	glib2-devel >= 1:2.18.0
 Obsoletes:	libxfce4mcs-devel
 Obsoletes:	xfce-mcs-manager-devel
 
@@ -104,7 +104,8 @@ Interfejs perlowy do Xfce4 Xfconf.
 %configure \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
-	--with-perl-options="INSTALLDIRS=vendor"
+	--with-perl-options="INSTALLDIRS=vendor" \
+	--disable-silent-rules
 %{__make}
 
 %install
@@ -116,6 +117,8 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 
 %{__rm} $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
 %{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/Xfce4/Xfconf/.packlist
+
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
 
 %find_lang %{name}
 
