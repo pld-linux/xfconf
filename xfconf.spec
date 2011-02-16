@@ -4,20 +4,20 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.6.2
-Release:	3
+Version:	4.8.0
+Release:	1
 License:	GPL v2
 Group:		Libraries
-Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	5ff93c15077c6dbbcd38c437bc1ab2ef
-URL:		http://www.xfce.org/projects/xfconf/
+Source0:	http://archive.xfce.org/xfce/4.8/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	0f11ed1ec7789c5c4c3fcc7cdb3c2940
+URL:		http://www.xfce.org/projects/xfconf
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.8
 BuildRequires:	dbus-devel >= 1.0.0
 BuildRequires:	dbus-glib-devel >= 0.72
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.0
+BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	intltool
 BuildRequires:	libtool
@@ -28,7 +28,7 @@ BuildRequires:	perl-Glib >= 1.020
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
-BuildRequires:	xfce4-dev-tools >= 4.6.0
+BuildRequires:	xfce4-dev-tools >= 4.8.0
 Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,7 +46,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus-devel >= 1.0.0
 Requires:	dbus-glib-devel >= 0.72
-Requires:	glib2-devel >= 1:2.12.0
+Requires:	glib2-devel >= 1:2.18.0
 Obsoletes:	libxfce4mcs-devel
 Obsoletes:	xfce-mcs-manager-devel
 
@@ -106,7 +106,8 @@ Interfejs perlowy do Xfce4 Xfconf.
 %configure \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
-	--with-perl-options="INSTALLDIRS=vendor"
+	--with-perl-options="INSTALLDIRS=vendor" \
+	--disable-silent-rules
 %{__make}
 
 %install
@@ -120,6 +121,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/Xfce4/Xfconf/.packlist
 
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name}
 
@@ -135,7 +137,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xfconf-query
 %attr(755,root,root) %{_libdir}/libxfconf-0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxfconf-0.so.2
-%attr(755,root,root) %{_libdir}/xfconfd
+%dir %{_libdir}/xfce4/xfconf
+%attr(755,root,root) %{_libdir}/xfce4/xfconf/xfconfd
 %dir %{_sysconfdir}/xdg/xfce4/xfconf
 %dir %{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{_datadir}/dbus-1/services/org.xfce.Xfconf.service
@@ -143,7 +146,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfconf-0.so
-%{_libdir}/libxfconf-0.la
 %{_includedir}/xfce4/xfconf-0
 %{_pkgconfigdir}/libxfconf-0.pc
 
