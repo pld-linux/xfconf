@@ -56,19 +56,6 @@ Header files for Xfconf library.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe biblioteki Xfconf.
 
-%package static
-Summary:	Static Xfconf library
-Summary(pl.UTF-8):	Statyczna biblioteka Xfconf
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-Obsoletes:	libxfce4mcs-static
-
-%description static
-Static Xfconf library.
-
-%description static -l pl.UTF-8
-Statyczna biblioteka Xfconf.
-
 %package apidocs
 Summary:	Xfconf API documentation
 Summary(pl.UTF-8):	Dokumentacja API Xfconf
@@ -148,10 +135,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libxfconf-0.so
 %{_includedir}/xfce4/xfconf-0
 %{_pkgconfigdir}/libxfconf-0.pc
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libxfconf-0.a
 
 %files apidocs
 %defattr(644,root,root,755)
