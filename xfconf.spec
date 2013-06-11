@@ -5,22 +5,18 @@ Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
 Version:	4.10.0
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Libraries
 Source0:	http://archive.xfce.org/xfce/4.10/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	4ed48150a03fb5f42b455494307b7f28
 URL:		http://www.xfce.org/projects/xfconf
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake >= 1:1.8
 BuildRequires:	dbus-devel >= 1.0.0
 BuildRequires:	dbus-glib-devel >= 0.72
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk-doc >= 1.0
-BuildRequires:	intltool
-BuildRequires:	libtool
 BuildRequires:	libxfce4util-devel >= %{version}
 BuildRequires:	perl-ExtUtils-Depends >= 0.3
 BuildRequires:	perl-ExtUtils-PkgConfig >= 1.0
@@ -85,11 +81,6 @@ Interfejs perlowy do Xfce4 Xfconf.
 %setup -q
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
 %configure \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
