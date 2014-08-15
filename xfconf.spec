@@ -1,6 +1,7 @@
 #
 %include	/usr/lib/rpm/macros.perl
 #
+%define		xfce_version	4.10.0
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
@@ -17,7 +18,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk-doc >= 1.0
-BuildRequires:	libxfce4util-devel >= %{version}
+BuildRequires:	libxfce4util-devel >= %{xfce_version}
 BuildRequires:	perl-ExtUtils-Depends >= 0.3
 BuildRequires:	perl-ExtUtils-PkgConfig >= 1.0
 BuildRequires:	perl-Glib-devel >= 1.224-2
