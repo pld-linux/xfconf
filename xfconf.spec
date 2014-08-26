@@ -7,25 +7,30 @@ Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
 Version:	4.10.0
 Release:	3
-License:	GPL v2
+License:	LGPL v2
 Group:		Libraries
 Source0:	http://archive.xfce.org/xfce/4.10/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	4ed48150a03fb5f42b455494307b7f28
 URL:		http://www.xfce.org/projects/xfconf
-BuildRequires:	dbus-devel >= 1.0.0
-BuildRequires:	dbus-glib-devel >= 0.72
+BuildRequires:	dbus-devel >= 1.1.0
+BuildRequires:	dbus-glib-devel >= 0.84
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.18.0
+BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
 BuildRequires:	perl-ExtUtils-Depends >= 0.3
 BuildRequires:	perl-ExtUtils-PkgConfig >= 1.0
 BuildRequires:	perl-Glib-devel >= 1.224-2
+BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRequires:	xfce4-dev-tools >= 4.10.0
+Requires:	dbus-glib >= 0.84
+Requires:	dbus-libs >= 1.1.0
+Requires:	glib2 >= 1:2.24.0
+Requires:	libxfce4util >= %{xfce_version}
 Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,9 +46,9 @@ Summary:	Header files for Xfconf library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Xfconf
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	dbus-devel >= 1.0.0
-Requires:	dbus-glib-devel >= 0.72
-Requires:	glib2-devel >= 1:2.18.0
+Requires:	dbus-devel >= 1.1.0
+Requires:	dbus-glib-devel >= 0.84
+Requires:	glib2-devel >= 1:2.24.0
 Obsoletes:	libxfce4mcs-devel
 Obsoletes:	xfce-mcs-manager-devel
 
@@ -70,6 +75,7 @@ Dokumentacja API Xfconf.
 Summary:	Perl interface to the Xfce4 Xfconf
 Summary(pl.UTF-8):	Interfejs perlowy do Xfce4 Xfconf
 Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}-%{release}
 Requires:	perl-Glib >= 1.020
 
 %description -n perl-Xfce4-Xfconf
@@ -84,9 +90,9 @@ Interfejs perlowy do Xfce4 Xfconf.
 %build
 %configure \
 	--enable-gtk-doc \
+	--disable-silent-rules \
 	--with-html-dir=%{_gtkdocdir} \
-	--with-perl-options="INSTALLDIRS=vendor" \
-	--disable-silent-rules
+	--with-perl-options="INSTALLDIRS=vendor"
 %{__make}
 
 %install
@@ -99,8 +105,10 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{__rm} $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
 %{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/Xfce4/Xfconf/.packlist
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
+# obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+# just a copy or ur
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
 
 %find_lang %{name}
 
@@ -134,12 +142,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n perl-Xfce4-Xfconf
 %defattr(644,root,root,755)
-%attr(755,root,root) %{perl_vendorarch}/auto/Xfce4/Xfconf/Xfconf.so
 %dir %{perl_vendorarch}/Xfce4
 %{perl_vendorarch}/Xfce4/Xfconf.pm
 %dir %{perl_vendorarch}/Xfce4/Xfconf
 %{perl_vendorarch}/Xfce4/Xfconf/Install
 %dir %{perl_vendorarch}/auto/Xfce4
 %dir %{perl_vendorarch}/auto/Xfce4/Xfconf
-%{perl_vendorarch}/auto/Xfce4/Xfconf/*.bs
+%{perl_vendorarch}/auto/Xfce4/Xfconf/Xfconf.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/Xfce4/Xfconf/Xfconf.so
 %{_mandir}/man3/Xfce4::Xfconf.3pm*
