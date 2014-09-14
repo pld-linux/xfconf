@@ -148,6 +148,5 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorarch}/Xfce4/Xfconf/Install
 %dir %{perl_vendorarch}/auto/Xfce4
 %dir %{perl_vendorarch}/auto/Xfce4/Xfconf
-%{perl_vendorarch}/auto/Xfce4/Xfconf/Xfconf.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Xfce4/Xfconf/Xfconf.so
 %{_mandir}/man3/Xfce4::Xfconf.3pm*
