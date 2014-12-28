@@ -15,7 +15,7 @@ URL:		http://www.xfce.org/projects/xfconf
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.84
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
