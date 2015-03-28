@@ -1,22 +1,22 @@
 #
 %include	/usr/lib/rpm/macros.perl
 #
-%define		xfce_version	4.10.0
+%define		xfce_version	4.12.0
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.10.0
-Release:	6
+Version:	4.12.0
+Release:	1
 License:	LGPL v2
 Group:		Libraries
-Source0:	http://archive.xfce.org/xfce/4.10/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	4ed48150a03fb5f42b455494307b7f28
+Source0:	http://archive.xfce.org/xfce/4.12/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	8ebfac507b4d6ce3f4bac9d257c2853b
 URL:		http://www.xfce.org/projects/xfconf
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.84
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.24.0
+BuildRequires:	glib2-devel >= 1:2.30.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
 BuildRequires:	perl-ExtUtils-Depends >= 0.3
@@ -26,10 +26,10 @@ BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
-BuildRequires:	xfce4-dev-tools >= 4.10.0
+BuildRequires:	xfce4-dev-tools >= %{xfce_version}
 Requires:	dbus-glib >= 0.84
 Requires:	dbus-libs >= 1.1.0
-Requires:	glib2 >= 1:2.24.0
+Requires:	glib2 >= 1:2.30.0
 Requires:	libxfce4util >= %{xfce_version}
 Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,7 +48,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus-devel >= 1.1.0
 Requires:	dbus-glib-devel >= 0.84
-Requires:	glib2-devel >= 1:2.24.0
+Requires:	glib2-devel >= 1:2.30.0
 Obsoletes:	libxfce4mcs-devel
 Obsoletes:	xfce-mcs-manager-devel
 
