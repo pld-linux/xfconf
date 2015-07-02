@@ -1,12 +1,10 @@
-#
-%include	/usr/lib/rpm/macros.perl
-#
 %define		xfce_version	4.12.0
+%include	/usr/lib/rpm/macros.perl
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
 Version:	4.12.0
-Release:	1
+Release:	2
 License:	LGPL v2
 Group:		Libraries
 Source0:	http://archive.xfce.org/xfce/4.12/src/%{name}-%{version}.tar.bz2
@@ -64,6 +62,9 @@ Summary(pl.UTF-8):	Dokumentacja API Xfconf
 Group:		Documentation
 Requires:	gtk-doc-common
 Obsoletes:	libxfce4mcs-apidocs
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 Xfconf API documentation.
