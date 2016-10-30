@@ -4,7 +4,7 @@ Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
 Version:	4.12.0
-Release:	3
+Release:	4
 License:	LGPL v2
 Group:		Libraries
 Source0:	http://archive.xfce.org/xfce/4.12/src/%{name}-%{version}.tar.bz2
