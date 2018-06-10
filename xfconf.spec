@@ -1,15 +1,15 @@
-%define		xfce_version	4.12.0
+%define		xfce_version	4.13.0
 %include	/usr/lib/rpm/macros.perl
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.12.0
-Release:	7
+Version:	4.13.4
+Release:	1
 License:	LGPL v2
 Group:		Libraries
-Source0:	http://archive.xfce.org/xfce/4.12/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	8ebfac507b4d6ce3f4bac9d257c2853b
-URL:		http://www.xfce.org/projects/xfconf
+Source0:	https://archive.xfce.org/src/xfce/xfconf/4.13/%{name}-%{version}.tar.bz2
+# Source0-md5:	200d46c4e5a6019bb2b1cc3948b90c9c
+URL:		https://www.xfce.org/projects/xfconf
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.84
 BuildRequires:	docbook-dtd412-xml
@@ -24,7 +24,7 @@ BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
-BuildRequires:	xfce4-dev-tools >= %{xfce_version}
+BuildRequires:	xfce4-dev-tools >= 4.12.0
 Requires:	dbus-glib >= 0.84
 Requires:	dbus-libs >= 1.1.0
 Requires:	glib2 >= 1:2.30.0
@@ -124,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS TODO
 %attr(755,root,root) %{_bindir}/xfconf-query
 %attr(755,root,root) %{_libdir}/libxfconf-0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxfconf-0.so.2
+%attr(755,root,root) %ghost %{_libdir}/libxfconf-0.so.3
 %dir %{_libdir}/xfce4/xfconf
 %attr(755,root,root) %{_libdir}/xfce4/xfconf/xfconfd
 %dir %{_sysconfdir}/xdg/xfce4/xfconf
