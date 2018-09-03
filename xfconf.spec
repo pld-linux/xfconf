@@ -4,7 +4,7 @@ Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
 Version:	4.12.0
-Release:	8
+Release:	9
 License:	LGPL v2
 Group:		Libraries
 Source0:	http://archive.xfce.org/xfce/4.12/src/%{name}-%{version}.tar.bz2
@@ -89,6 +89,11 @@ Interfejs perlowy do Xfce4 Xfconf.
 %setup -q
 
 %build
+%{__gtkdocize}
+%{__libtoolize}
+%{__aclocal}
+%{__automake}
+%{__autoconf}
 %configure \
 	--enable-gtk-doc \
 	--disable-silent-rules \
