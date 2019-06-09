@@ -3,12 +3,12 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.13.4
+Version:	4.13.7
 Release:	1
 License:	LGPL v2
 Group:		Libraries
 Source0:	https://archive.xfce.org/src/xfce/xfconf/4.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	200d46c4e5a6019bb2b1cc3948b90c9c
+# Source0-md5:	ea4c070c4ed8387e6435b56d0e871559
 URL:		https://www.xfce.org/projects/xfconf
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.84
