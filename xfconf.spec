@@ -3,12 +3,12 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.13.7
-Release:	1
+Version:	4.13.8
+Release:	0.1
 License:	LGPL v2
 Group:		Libraries
 Source0:	https://archive.xfce.org/src/xfce/xfconf/4.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	ea4c070c4ed8387e6435b56d0e871559
+# Source0-md5:	5d48e8d50f7bfadd31e804ce602a5cf3
 URL:		https://www.xfce.org/projects/xfconf
 BuildRequires:	dbus-devel >= 1.1.0
 BuildRequires:	dbus-glib-devel >= 0.84
@@ -93,6 +93,7 @@ Interfejs perlowy do Xfce4 Xfconf.
 	--enable-gtk-doc \
 	--disable-silent-rules \
 	--with-html-dir=%{_gtkdocdir} \
+	--enable-perl-bindings \
 	--with-perl-options="INSTALLDIRS=vendor"
 %{__make}
 
@@ -109,7 +110,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 # obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 # just a copy or ur
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
 
 %find_lang %{name}
 
@@ -130,12 +131,14 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/xdg/xfce4/xfconf
 %dir %{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{_datadir}/dbus-1/services/org.xfce.Xfconf.service
+%{_libdir}/girepository-1.0/Xfconf-0.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxfconf-0.so
 %{_includedir}/xfce4/xfconf-0
 %{_pkgconfigdir}/libxfconf-0.pc
+%{_datadir}/gir-1.0/Xfconf-0.gir
 
 %files apidocs
 %defattr(644,root,root,755)
