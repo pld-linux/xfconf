@@ -109,11 +109,10 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 
 # obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+# unify
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
 # just a copy or ur
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
-
-# unknown / unsupported
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/hy_AM
 
 %find_lang %{name}
 
