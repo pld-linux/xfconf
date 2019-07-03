@@ -4,30 +4,29 @@ Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
 Version:	4.13.8
-Release:	1
+Release:	2
 License:	LGPL v2
 Group:		Libraries
 Source0:	https://archive.xfce.org/src/xfce/xfconf/4.13/%{name}-%{version}.tar.bz2
 # Source0-md5:	5d48e8d50f7bfadd31e804ce602a5cf3
 URL:		https://www.xfce.org/projects/xfconf
-BuildRequires:	dbus-devel >= 1.1.0
-BuildRequires:	dbus-glib-devel >= 0.84
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.30.0
+BuildRequires:	glib2-devel >= 1:2.42.0
+BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
-BuildRequires:	perl-ExtUtils-Depends >= 0.3
+BuildRequires:	perl-ExtUtils-Depends >= 0.300
 BuildRequires:	perl-ExtUtils-PkgConfig >= 1.0
 BuildRequires:	perl-Glib-devel >= 1.224-2
 BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.98
+BuildRequires:	vala
 BuildRequires:	xfce4-dev-tools >= 4.12.0
-Requires:	dbus-glib >= 0.84
-Requires:	dbus-libs >= 1.1.0
-Requires:	glib2 >= 1:2.30.0
+Requires:	glib2 >= 1:2.42.0
 Requires:	libxfce4util >= %{xfce_version}
 Obsoletes:	libxfce4mcs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,9 +43,7 @@ Summary:	Header files for Xfconf library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Xfconf
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	dbus-devel >= 1.1.0
-Requires:	dbus-glib-devel >= 0.84
-Requires:	glib2-devel >= 1:2.30.0
+Requires:	glib2-devel >= 1:2.42.0
 Obsoletes:	libxfce4mcs-devel
 Obsoletes:	xfce-mcs-manager-devel
 
@@ -85,15 +82,28 @@ Perl interface to the Xfce4 Xfconf.
 %description -n perl-Xfce4-Xfconf -l pl.UTF-8
 Interfejs perlowy do Xfce4 Xfconf.
 
+%package -n vala-xfconf
+Summary:	Vala API for Xfconf library
+Summary(pl.UTF-8):	API języka Vala do biblioteki Xfconf
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	vala
+
+%description -n vala-xfconf
+Vala API for Xfconf library.
+
+%description -n vala-xfconf -l pl.UTF-8
+API języka Vala do biblioteki Xfconf.
+
 %prep
 %setup -q
 
 %build
 %configure \
 	--enable-gtk-doc \
+	--enable-perl-bindings \
 	--disable-silent-rules \
 	--with-html-dir=%{_gtkdocdir} \
-	--enable-perl-bindings \
 	--with-perl-options="INSTALLDIRS=vendor"
 %{__make}
 
@@ -156,3 +166,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorarch}/auto/Xfce4/Xfconf
 %attr(755,root,root) %{perl_vendorarch}/auto/Xfce4/Xfconf/Xfconf.so
 %{_mandir}/man3/Xfce4::Xfconf.3pm*
+
+%files -n vala-xfconf
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/libxfconf-0.deps
+%{_datadir}/vala/vapi/libxfconf-0.vapi
