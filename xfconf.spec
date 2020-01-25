@@ -1,5 +1,4 @@
 %define		xfce_version	4.14.0
-%include	/usr/lib/rpm/macros.perl
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
