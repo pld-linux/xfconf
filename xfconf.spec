@@ -22,7 +22,7 @@ BuildRequires:	perl-Glib-devel >= 1.224-2
 BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.98
+BuildRequires:	rpmbuild(macros) >= 1.745
 BuildRequires:	vala
 BuildRequires:	xfce4-dev-tools >= 4.12.0
 Requires:	glib2 >= 1:2.42.0
@@ -58,7 +58,7 @@ Summary(pl.UTF-8):	Dokumentacja API Xfconf
 Group:		Documentation
 Requires:	gtk-doc-common
 Obsoletes:	libxfce4mcs-apidocs
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
