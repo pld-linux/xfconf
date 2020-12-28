@@ -1,17 +1,17 @@
-%define		xfce_version	4.14.0
+%define		xfce_version	4.16.0
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.14.3
+Version:	4.16.0
 Release:	1
 License:	LGPL v2
 Group:		Libraries
-Source0:	https://archive.xfce.org/src/xfce/xfconf/4.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	25c32ed08a43e81f7900c03601dffc02
+Source0:	https://archive.xfce.org/src/xfce/xfconf/4.16/%{name}-%{version}.tar.bz2
+# Source0-md5:	ac204fcc17fd4299d59e619aadbc6194
 URL:		https://www.xfce.org/projects/xfconf
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.42.0
+BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	intltool >= 0.35.0
@@ -24,10 +24,11 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 1.745
 BuildRequires:	vala
-BuildRequires:	xfce4-dev-tools >= 4.12.0
-Requires:	glib2 >= 1:2.42.0
+BuildRequires:	xfce4-dev-tools >= 4.16.0
+Requires:	glib2 >= 1:2.50.0
 Requires:	libxfce4util >= %{xfce_version}
 Obsoletes:	libxfce4mcs
+Obsoletes:	perl-Xfce4-Xfconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,7 +43,7 @@ Summary:	Header files for Xfconf library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Xfconf
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.42.0
+Requires:	glib2-devel >= 1:2.50.0
 Obsoletes:	libxfce4mcs-devel
 Obsoletes:	xfce-mcs-manager-devel
 
@@ -68,18 +69,21 @@ Xfconf API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API Xfconf.
 
-%package -n perl-Xfce4-Xfconf
-Summary:	Perl interface to the Xfce4 Xfconf
-Summary(pl.UTF-8):	Interfejs perlowy do Xfce4 Xfconf
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}-%{release}
-Requires:	perl-Glib >= 1.020
+%package -n bash-completion-xfconf-query
+Summary:	bash-completion for xfconf-query command
+Summary(pl.UTF-8):	bashowe uzupełnianie parametrów polecenia xfconf-query
+Group:		Applications/Shells
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	bash-completion >= 2.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
-%description -n perl-Xfce4-Xfconf
-Perl interface to the Xfce4 Xfconf.
+%description -n bash-completion-xfconf-query
+Bash-completion for xfconf-query command.
 
-%description -n perl-Xfce4-Xfconf -l pl.UTF-8
-Interfejs perlowy do Xfce4 Xfconf.
+%description -n bash-completion-xfconf-query -l pl.UTF-8
+Bashowe uzupełnianie parametrów polecenia xfconf-query.
 
 %package -n vala-xfconf
 Summary:	Vala API for Xfconf library
@@ -100,10 +104,8 @@ API języka Vala do biblioteki Xfconf.
 %build
 %configure \
 	--enable-gtk-doc \
-	--enable-perl-bindings \
 	--disable-silent-rules \
-	--with-html-dir=%{_gtkdocdir} \
-	--with-perl-options="INSTALLDIRS=vendor"
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -113,15 +115,14 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
-%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/Xfce4/Xfconf/.packlist
-
 # obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libxfconfgsettingsbackend.la
 # unify
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
 # just a copy or ur
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/hye
 
 %find_lang %{name}
 
@@ -136,6 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS TODO
 %attr(755,root,root) %{_bindir}/xfconf-query
 %attr(755,root,root) %{_libdir}/libxfconf-0.so.*.*.*
+%attr(755,root,root) %{_libdir}/gio/modules/libxfconfgsettingsbackend.so
 %attr(755,root,root) %ghost %{_libdir}/libxfconf-0.so.3
 %dir %{_libdir}/xfce4/xfconf
 %attr(755,root,root) %{_libdir}/xfce4/xfconf/xfconfd
@@ -155,16 +157,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_gtkdocdir}/xfconf
 
-%files -n perl-Xfce4-Xfconf
+%files -n bash-completion-xfconf-query
 %defattr(644,root,root,755)
-%dir %{perl_vendorarch}/Xfce4
-%{perl_vendorarch}/Xfce4/Xfconf.pm
-%dir %{perl_vendorarch}/Xfce4/Xfconf
-%{perl_vendorarch}/Xfce4/Xfconf/Install
-%dir %{perl_vendorarch}/auto/Xfce4
-%dir %{perl_vendorarch}/auto/Xfce4/Xfconf
-%attr(755,root,root) %{perl_vendorarch}/auto/Xfce4/Xfconf/Xfconf.so
-%{_mandir}/man3/Xfce4::Xfconf.3pm*
+%{bash_compdir}/xfconf-query
 
 %files -n vala-xfconf
 %defattr(644,root,root,755)
