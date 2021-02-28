@@ -75,9 +75,7 @@ Summary(pl.UTF-8):	bashowe uzupełnianie parametrów polecenia xfconf-query
 Group:		Applications/Shells
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bash-completion >= 2.0
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n bash-completion-xfconf-query
 Bash-completion for xfconf-query command.
