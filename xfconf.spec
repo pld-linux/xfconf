@@ -1,18 +1,18 @@
-%define		xfce_version	4.16.0
+%define		xfce_version	4.18.0
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.16.0
+Version:	4.18.0
 Release:	1
 License:	LGPL v2
 Group:		Libraries
-Source0:	https://archive.xfce.org/src/xfce/xfconf/4.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	ac204fcc17fd4299d59e619aadbc6194
+Source0:	https://archive.xfce.org/src/xfce/xfconf/4.18/%{name}-%{version}.tar.bz2
+# Source0-md5:	efb7381405bc634306ed0d0cdf5aaffc
 URL:		https://www.xfce.org/projects/xfconf
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.50.0
-BuildRequires:	gobject-introspection-devel >= 1.30.0
+BuildRequires:	gobject-introspection-devel >= 1.66.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
@@ -22,9 +22,9 @@ BuildRequires:	perl-Glib-devel >= 1.224-2
 BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
-BuildRequires:	rpmbuild(macros) >= 1.745
+BuildRequires:	rpmbuild(macros) >= 2.000
 BuildRequires:	vala
-BuildRequires:	xfce4-dev-tools >= 4.16.0
+BuildRequires:	xfce4-dev-tools >= 4.18.0
 Requires:	glib2 >= 1:2.50.0
 Requires:	libxfce4util >= %{xfce_version}
 Obsoletes:	libxfce4mcs
