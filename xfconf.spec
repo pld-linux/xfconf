@@ -21,6 +21,7 @@ BuildRequires:	perl-ExtUtils-PkgConfig >= 1.0
 BuildRequires:	perl-Glib-devel >= 1.224-2
 BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 2.000
 BuildRequires:	vala
@@ -87,6 +88,7 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki Xfconf
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala
+BuildArch:	noarch
 
 %description -n vala-xfconf
 Vala API for Xfconf library.
@@ -118,6 +120,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hy}
 # just a copy or ur
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
+# not supported
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/hye
 
 %find_lang %{name}
