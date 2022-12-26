@@ -28,8 +28,8 @@ BuildRequires:	vala
 BuildRequires:	xfce4-dev-tools >= 4.18.0
 Requires:	glib2 >= 1:2.50.0
 Requires:	libxfce4util >= %{xfce_version}
-Obsoletes:	libxfce4mcs
-Obsoletes:	perl-Xfce4-Xfconf
+Obsoletes:	libxfce4mcs < 4.5
+Obsoletes:	perl-Xfce4-Xfconf < 4.16
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,8 +45,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Xfconf
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.50.0
-Obsoletes:	libxfce4mcs-devel
-Obsoletes:	xfce-mcs-manager-devel
+Obsoletes:	libxfce4mcs-devel < 4.5
+Obsoletes:	xfce-mcs-manager-devel < 4.5
 
 %description devel
 Header files for Xfconf library.
@@ -59,7 +59,7 @@ Summary:	Xfconf API documentation
 Summary(pl.UTF-8):	Dokumentacja API Xfconf
 Group:		Documentation
 Requires:	gtk-doc-common
-Obsoletes:	libxfce4mcs-apidocs
+Obsoletes:	libxfce4mcs-apidocs < 4.5
 BuildArch:	noarch
 
 %description apidocs
@@ -73,7 +73,7 @@ Summary:	bash-completion for xfconf-query command
 Summary(pl.UTF-8):	bashowe uzupełnianie parametrów polecenia xfconf-query
 Group:		Applications/Shells
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	bash-completion >= 2.0
+Requires:	bash-completion >= 1:2.0
 BuildArch:	noarch
 
 %description -n bash-completion-xfconf-query
