@@ -2,12 +2,12 @@
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.18.2
+Version:	4.18.3
 Release:	1
 License:	LGPL v2
 Group:		Libraries
 Source0:	https://archive.xfce.org/src/xfce/xfconf/4.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	844cc17ffbf869dd2ea6b4a4db32156c
+# Source0-md5:	f807ed0a1b88af479ec70b28c1f78dcc
 URL:		https://docs.xfce.org/xfce/xfconf/start
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
