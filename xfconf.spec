@@ -10,11 +10,10 @@ Source0:	https://archive.xfce.org/src/xfce/xfconf/4.20/%{name}-%{version}.tar.bz
 # Source0-md5:	ca596ff0a9be7fa655bb09cb05458644
 URL:		https://docs.xfce.org/xfce/xfconf/start
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gettext-tools
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.72.0
 BuildRequires:	gobject-introspection-devel >= 1.66.0
 BuildRequires:	gtk-doc >= 1.20
-BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libxfce4util-devel >= %{xfce_version}
 BuildRequires:	perl-ExtUtils-Depends >= 0.300
 BuildRequires:	perl-ExtUtils-PkgConfig >= 1.0
@@ -26,8 +25,8 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 2.000
 BuildRequires:	vala
 BuildRequires:	xfce4-dev-tools >= %{xfce_version}
-Requires:	glib2 >= 1:2.66.0
 Requires(post,preun):	systemd-units >= 1:250.1
+Requires:	glib2 >= 1:2.72.0
 Requires:	libxfce4util >= %{xfce_version}
 Requires:	systemd-units >= 1:250.1
 Obsoletes:	libxfce4mcs < 4.5
@@ -46,7 +45,7 @@ Summary:	Header files for Xfconf library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Xfconf
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.66.0
+Requires:	glib2-devel >= 1:2.72.0
 Obsoletes:	libxfce4mcs-devel < 4.5
 Obsoletes:	xfce-mcs-manager-devel < 4.5
 
