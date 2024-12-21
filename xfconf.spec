@@ -1,17 +1,17 @@
-%define		xfce_version	4.18.0
+%define		xfce_version	4.20.0
 Summary:	Simple configuration storage and query system
 Summary(pl.UTF-8):	Prosty system przechowywania i odpytywania konfiguracji
 Name:		xfconf
-Version:	4.18.3
+Version:	4.20.0
 Release:	1
 License:	LGPL v2
 Group:		Libraries
-Source0:	https://archive.xfce.org/src/xfce/xfconf/4.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	f807ed0a1b88af479ec70b28c1f78dcc
+Source0:	https://archive.xfce.org/src/xfce/xfconf/4.20/%{name}-%{version}.tar.bz2
+# Source0-md5:	ca596ff0a9be7fa655bb09cb05458644
 URL:		https://docs.xfce.org/xfce/xfconf/start
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.66.0
+BuildRequires:	glib2-devel >= 1:2.72.0
 BuildRequires:	gobject-introspection-devel >= 1.66.0
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	intltool >= 0.35.0
@@ -25,9 +25,11 @@ BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpmbuild(macros) >= 2.000
 BuildRequires:	vala
-BuildRequires:	xfce4-dev-tools >= 4.18.0
+BuildRequires:	xfce4-dev-tools >= %{xfce_version}
 Requires:	glib2 >= 1:2.66.0
+Requires(post,preun):	systemd-units >= 1:250.1
 Requires:	libxfce4util >= %{xfce_version}
+Requires:	systemd-units >= 1:250.1
 Obsoletes:	libxfce4mcs < 4.5
 Obsoletes:	perl-Xfce4-Xfconf < 4.16
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -128,12 +130,18 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+%systemd_user_post xfconfd.service
+
+%preun
+%systemd_user_preun xfconfd.service
+
 %postun	-p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS TODO
+%doc AUTHORS ChangeLog NEWS README.md
 %attr(755,root,root) %{_bindir}/xfconf-query
 %attr(755,root,root) %{_libdir}/libxfconf-0.so.*.*.*
 %attr(755,root,root) %{_libdir}/gio/modules/libxfconfgsettingsbackend.so
@@ -144,6 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml
 %{_datadir}/dbus-1/services/org.xfce.Xfconf.service
 %{_libdir}/girepository-1.0/Xfconf-0.typelib
+%{systemduserunitdir}/xfconfd.service
 
 %files devel
 %defattr(644,root,root,755)
